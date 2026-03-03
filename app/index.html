@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Generator</title>
+</head>
+<body>
+    <h1>Generar contraseña</h1>
+
+    <input type="number" id="length" value="8" />
+    <button onclick="generate()">Generar</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        async function generate() {
+            const length = document.getElementById("length").value;
+
+            const response = await fetch(`http://127.0.0.1:8000/generate?length=${length}`);
+            const data = await response.json();
+
+            if (data.success) {
+                document.getElementById("result").innerText = data.password;
+            } else {
+                document.getElementById("result").innerText = data.error;
+            }
+        }
+    </script>
+</body>
+</html>
