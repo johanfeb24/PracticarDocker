@@ -14,6 +14,10 @@ def open_browser():
 # Creamos una instancia del servicio
 password_service = PasswordService()
 
+@app.get("/")
+def root():
+    return {"message": "API funcionando correctamente"}
+
 
 @app.get("/health")
 def health_check():
